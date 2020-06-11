@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html, body {
+      padding: 0;
+      margin: 0;
+    }
+    .scroll-wrapper {
+        height: 100vh;
+        overflow: hidden;
+      }
+      .scroll-item {
+        height: 50px;
+        line-height: 50px;
+        font-size: 24px;
+        font-weight: bold;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+      }
+      .scroll-item:nth-child(2n) {
+        background-color: #f3f5f7;
+      }
+      .scroll-item:nth-child(2n+1) {
+        background-color: #42b983;
+      }   
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.11/vue.min.js"></script>
+  <script src="./lib/scroll.js"></script>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      template: `
+        <div class="scroll-wrapper">
+          <div ref="scroll">
+            <div class="scroll-item" v-for="(item, index) in emojis" :key="index">{{item}}</div>
+          </div>
+        </div>
+      `,
+      data () {
+        return {
+          emojis: [
+            '😀 😁 😂 🤣 😃',
+            '😄 😅 😆 😉 😊',
+            '😫 😴 😌 😛 😜',
+            '👆🏻 😒 😓 😔 👇🏻',
+            '😑 😶 🙄 😏 😣',
+            '😞 😟 😤 😢 😭',
+            '🤑 😲 ☹️ 🙁 😖',
+            '👍 👎 👊 ✊ 🤛',
+            '☝️ ✋ 🤚 🖐 🖖',
+            '👍🏼 👎🏼 👊🏼 ✊🏼 🤛🏼',
+            '☝🏽 ✋🏽 🤚🏽 🖐🏽 🖖🏽',
+            '🌖 🌗 🌘 🌑 🌒',
+            '💫 💥 💢 💦 💧',
+            '🐠 🐟 🐬 🐳 🐋',
+            '😬 😐 😕 😯 😶',
+            '😇 😏 😑 😓 😵',
+            '🐥 🐣 🐔 🐛 🐤',
+            '💪 ✨ 🔔 ✊ ✋',
+            '👇 👊 👍 👈 👆',
+            '💛 👐 👎 👌 💘',
+            '😀 😁 😂 🤣 😃',
+            '😄 😅 😆 😉 😊',
+            '😫 😴 😌 😛 😜',
+            '👆🏻 😒 😓 😔 👇🏻',
+            '😑 😶 🙄 😏 😣',
+            '😞 😟 😤 😢 😭',
+            '🤑 😲 ☹️ 🙁 😖',
+            '👍 👎 👊 ✊ 🤛',
+            '☝️ ✋ 🤚 🖐 🖖',
+            '👍🏼 👎🏼 👊🏼 ✊🏼 🤛🏼',
+            '☝🏽 ✋🏽 🤚🏽 🖐🏽 🖖🏽',
+            '🌖 🌗 🌘 🌑 🌒',
+            '💫 💥 💢 💦 💧',
+            '🐠 🐟 🐬 🐳 🐋',
+            '😬 😐 😕 😯 😶',
+            '😇 😏 😑 😓 😵',
+            '🐥 🐣 🐔 🐛 🐤',
+            '💪 ✨ 🔔 ✊ ✋',
+            '👇 👊 👍 👈 👆',
+            '💛 👐 👎 👌 💘'
+          ]
+        }
+      },
+      mounted() {
+        this.init()
+      },
+      beforeDestroy() {
+        this.scroll.destroy()
+      },
+      methods: {
+        init() {
+          this.scroll = new Scroll({ el: this.$refs.scroll })
+        },
+      }
+    })
+  </script>
+</body>
+</html>
